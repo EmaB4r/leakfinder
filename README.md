@@ -7,7 +7,7 @@
  #include "leakfinder.h"
  ```
 
-this lib simply redefines malloc and free to two debugging functions.
-redefined `malloc(size)` simply stores in a list all allocations.
-redefined `free(mem)` removes from the list the record corresponding to the freed memory.
-`print_leaks()` prints to terminal the whole list contents. If there's still some allocated memory it'll be printed
+this lib simply redefines malloc and free to two debugging functions.  
+redefined `malloc(size)` simply stores in a list all allocations.  
+redefined `free(mem)` removes from the list the record corresponding to the freed memory.  
+`print_leaks()` prints to terminal the whole list contents. If there's still some allocated memory it'll be printed.  
