@@ -32,7 +32,7 @@ void * deb_malloc(size_t size, unsigned int line , char*file){
 
 void deb_free(void * mem, unsigned int line , char*file){
     list_remove(&allocations, (int (*)(void*, void *))freecmp, mem);
-    free(mem);
+    free(mem);;
 }
 
 void allocation_print(allocation* alloc){
