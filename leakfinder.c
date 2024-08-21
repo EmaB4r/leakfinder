@@ -41,5 +41,5 @@ void allocation_print(allocation* alloc){
 
 
 void print_leaks(){
-    list_print(&allocations, allocation_print);
+    list_print(&allocations, (void (*) (void*))allocation_print);
 }
