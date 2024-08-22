@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "Data-Structures/List_obj_copy/list.h"
+#include "dep/list.h"
 
 typedef struct _allocation{
     void * mem;
