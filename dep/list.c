@@ -1,5 +1,10 @@
 #include "list.h"
 
+#undef malloc
+#undef calloc
+#undef realloc
+#undef free
+
 int list_is_empty(list_t * list){
     return !list->n_elements;
 }
