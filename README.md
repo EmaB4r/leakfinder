@@ -17,4 +17,4 @@
  Or globally by compiling with:  
  `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c ./dep/list.c whatever.c `
  
- Thanks to [MrGerman](https://github.com/pfhaupt)
+ Thanks to [MrGerman](https://github.com/pfhaupt) for code testing and some code fixes
