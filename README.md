@@ -15,4 +15,4 @@
  #include "./leakfinder.h"
  ```  
  Or globally by compiling with:  
- gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c ./dep/list.c whatever.c 
+ `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c ./dep/list.c whatever.c `
