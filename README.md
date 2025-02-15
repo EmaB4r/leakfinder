@@ -1,15 +1,16 @@
-# alloc-leak-finder
- simple memory leaks finder, uses my list data structure for keeping track of every allocation/free
- can be enabled with
-  
+# leakfinder
+ This library is able to redefine some (or every) malloc, calloc, realloc and free to custom allocators,  
+ also able to keep track of all the unfreed memory.  
+
+ to know what is still allocated you need to write `check_mem_leaks;` to get the report like:
+ `still allocated 8B at line 15 in main.c`  
+ 
+ keep in mind that this library only knows what malloc() calls are still not freed
+ 
+ 
+# How to use  
+ can be enabled for a single file by doing:
  ```
  #define DEBUGALLOC
- #include "leakfinder.h"
+ #include "./leakfinder.h"
  ```
-
-this lib simply redefines malloc and free to two debugging functions.  
-redefined `malloc(size)` simply stores in a list all allocations.  
-redefined `free(mem)` removes from the list the record corresponding to the freed memory.  
-`check_mem_leaks` macro prints to terminal the whole list contents.  
-If there's still some allocated memory it'll be printed.  
-This macro also becomes `#define check_mem_leaks ` if DEBUGALLOC is not defined   
