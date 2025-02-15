@@ -16,3 +16,5 @@
  ```  
  Or globally by compiling with:  
  `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c ./dep/list.c whatever.c `
+ 
+ Thanks to [MrGerman](https://github.com/pfhaupt)

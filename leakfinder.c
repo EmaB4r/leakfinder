@@ -17,17 +17,17 @@ typedef struct _allocation{
 } allocation;
 
 int freecmp(allocation* alloc, void * mem){
-    return alloc->mem-mem;
+    return (char*)alloc->mem-(char*)mem;
 }
 
 list_t allocations={.n_elements=-1};
 
-void deb_free(void * mem, unsigned int line , char*file){
+void deb_free(void * mem, unsigned int line , const char*file){
     list_remove(&allocations, (int (*)(void*, void *))freecmp, mem);
-    free(mem);;
+    free(mem);
 }
 
-void * deb_malloc(size_t size, unsigned int line , char*file){
+void * deb_malloc(size_t size, unsigned int line , const char*file){
     if(allocations.n_elements==-1) allocations=list_init();
     void* mem = malloc(size);
     allocation alloc = {
@@ -39,7 +39,7 @@ void * deb_malloc(size_t size, unsigned int line , char*file){
     LIST_INS_TAIL(&allocations, alloc);
     return mem;
 }
-void * deb_calloc(size_t n, size_t size, unsigned int line , char*file){
+void * deb_calloc(size_t n, size_t size, unsigned int line , const char*file){
     if(allocations.n_elements==-1) allocations=list_init();
     void* mem = calloc(n, size);
     allocation alloc = {
@@ -52,7 +52,7 @@ void * deb_calloc(size_t n, size_t size, unsigned int line , char*file){
     return mem;
 }
 
-void * deb_realloc(void * p, size_t size, unsigned int line , char*file){
+void * deb_realloc(void * p, size_t size, unsigned int line , const char*file){
     if(allocations.n_elements==-1) allocations=list_init();
     void* mem = realloc(p, size);
     deb_free(p, 0, NULL);
@@ -68,7 +68,7 @@ void * deb_realloc(void * p, size_t size, unsigned int line , char*file){
 
 
 void allocation_print(allocation* alloc){
-    printf("still allocated %luB at line %d in %s\n", alloc->size, alloc->line, alloc->filename);
+    printf("still allocated %zuB at line %d in %s\n", alloc->size, alloc->line, alloc->filename);
 }
 
 
