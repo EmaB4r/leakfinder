@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -153,7 +154,7 @@ void * deb_calloc(size_t n, size_t size, unsigned int line , const char*file){
     allocation alloc = {
         .mem = mem,
         .line=line,
-        .size=size
+        .size=size*n
     };
     strcpy(alloc.filename, file);
     LEAKFINDER_LIST_INS_TAIL(&allocations, alloc);
@@ -176,12 +177,19 @@ void * deb_realloc(void * p, size_t size, unsigned int line , const char*file){
 
 
 void allocation_print(allocation* alloc){
-    printf("still allocated %zuB at line %d in %s\n", alloc->size, alloc->line, alloc->filename);
+    printf("%s:%d: allocated %zu Bytes\n", alloc->filename, alloc->line, alloc->size);
 }
 
 
 void print_leaks(){
-    leakfinder_list_print(&allocations, (void (*) (void*))allocation_print);
+    uint64_t total_mem=0;
+    node_t * head=(&allocations)->head;
+    while(head!=NULL){
+        allocation_print(head->item);
+        total_mem+=((allocation*)head->item)->size;
+        head=head->next;
+    }
+    printf("Total leaking memory: %zu Bytes\n", total_mem);
 }
 
 

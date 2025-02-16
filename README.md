@@ -3,7 +3,9 @@
  and keep track of all allocations/deallocations.  
 
  to know what is still allocated you need to write `check_mem_leaks;` to get something like:  
- `still allocated 8B at line 15 in main.c`  
+ `FILE:LINE: allocated M Bytes`  
+ `FILE:LINE: allocated N Bytes`   
+ `Total leaking memory: M+N Bytes`  
  
  keep in mind that this library only knows what allocations are not yet freed,  
  it cannot know what that memory is used for.

@@ -1,11 +1,11 @@
-#ifndef MYALLOC_H
-#define MYALLOC_H
+#ifndef LEAKFINDER_H
+#define LEAKFINDER_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#ifdef DEBUGALLOC
+#ifdef LEAKFINDER
     #include <stddef.h>
     #include <stdlib.h>
     void * deb_malloc(size_t size, unsigned int line , const char*file);
