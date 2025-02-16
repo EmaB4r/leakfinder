@@ -117,6 +117,7 @@ int leakfinder_list_remove(list_t * list, int (* item_cmp)(void*, void*), void *
     return found;
 }
 
+// LEAKFINDER SEGMENT
 
 typedef struct _allocation{
     void * mem;

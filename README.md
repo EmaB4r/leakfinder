@@ -14,12 +14,12 @@
 # How to use  
  can be enabled for a single file by doing:
  ```
- #define DEBUGALLOC
+ #define LEAKFINDER
  #include "./leakfinder.h"
  // DO STUFF
  check_mem_leaks;
  ```  
  Or globally by compiling with:  
- `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c whatever.c `
+ `gcc  -DLEAKFINDER -include ./leakfinder.h main.c ./leakfinder.c whatever.c `
  
- Thanks to [MrGerman](https://github.com/pfhaupt) for code testing and some code fixes
+ Thanks to [MrGerman](https://github.com/pfhaupt) for code testing and code fixes
