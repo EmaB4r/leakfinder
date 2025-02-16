@@ -1,11 +1,12 @@
 # leakfinder
- This library is able to redefine some (or every) malloc, calloc, realloc and free to custom allocators,  
- also able to keep track of all the unfreed memory.  
+ This library is able to intercept all `malloc`, `calloc`, `realloc` and `free`,  
+ and keep track of all allocations/deallocations.  
 
  to know what is still allocated you need to write `check_mem_leaks;` to get something like:  
  `still allocated 8B at line 15 in main.c`  
  
- keep in mind that this library only knows what malloc() calls are still not freed
+ keep in mind that this library only knows what allocations are not yet freed,  
+ it cannot know what that memory is used for.
  
  
 # How to use  
@@ -13,8 +14,10 @@
  ```
  #define DEBUGALLOC
  #include "./leakfinder.h"
+ // DO STUFF
+ check_mem_leaks;
  ```  
  Or globally by compiling with:  
- `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c ./dep/list.c whatever.c `
+ `gcc  -DDEBUGALLOC -include ./leakfinder.h main.c ./leakfinder.c whatever.c `
  
  Thanks to [MrGerman](https://github.com/pfhaupt) for code testing and some code fixes

@@ -1,2 +1,2 @@
 default:
-	gcc  main.c ../../leakfinder.c ../../dep/list.c
+	gcc  -Wextra -Wall -Wpedantic -pedantic main.c ../../leakfinder.c 

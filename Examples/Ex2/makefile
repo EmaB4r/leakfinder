@@ -1,2 +1,2 @@
 default:
-	gcc -Wextra -Wall -DDEBUGALLOC -include ../../leakfinder.h main.c ../../leakfinder.c ../../dep/list.c charalloc.c intalloc.c
+	gcc -Wextra -Wall -Wpedantic -pedantic -DDEBUGALLOC -include ../../leakfinder.h main.c ../../leakfinder.c charalloc.c intalloc.c
