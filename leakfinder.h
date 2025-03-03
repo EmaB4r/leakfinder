@@ -12,7 +12,7 @@ extern "C" {
     void * deb_calloc(size_t n, size_t size, unsigned int line , const char*file);
     void * deb_realloc(void * p, size_t size, unsigned int line , const char*file);
     void deb_free(void * mem);
-    void print_leaks();
+    void print_leaks() __attribute__((destructor));
     #define malloc(x) deb_malloc(x,__LINE__, __FILE__)
     #define calloc(x, y) deb_calloc(x,y,__LINE__, __FILE__)
     #define realloc(x,y) deb_realloc(x,y,__LINE__, __FILE__)

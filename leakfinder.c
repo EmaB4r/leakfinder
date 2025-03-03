@@ -181,8 +181,14 @@ void allocation_print(allocation* alloc){
     printf("%s:%d: allocated %zu Bytes\n", alloc->filename, alloc->line, alloc->size);
 }
 
-
-void print_leaks(){
+// TODO: maybe make print_leaks variadic for different printing styles or whatnot
+// for exaple doing
+// `File1:line_N leaked total XX Bytes`
+// `File2:line_M leaked total YY Bytes`
+// `File3:line_O leaked total ZZ Bytes`
+// `Total leaking memory: XX+YY+ZZ Bytes`
+// instead of printing every single allocation
+__attribute__((destructor)) void print_leaks(){
     uint64_t total_mem=0;
     node_t * head=(&allocations)->head;
     while(head!=NULL){

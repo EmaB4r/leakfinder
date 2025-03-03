@@ -1,2 +1,2 @@
 default:
-	gcc  -Wextra -Wall -Wpedantic -pedantic main.c ../../leakfinder.c 
+	gcc  -Wextra -Wall -Wpedantic -pedantic main.c charalloc.c ../../leakfinder.c 
