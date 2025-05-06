@@ -189,9 +189,6 @@ void allocation_print(allocation* alloc){
 // `Total leaking memory: XX+YY+ZZ Bytes`
 // instead of printing every single allocation
 
-#ifndef DISABLE_DESTRUCTOR
-__attribute__((destructor))
-#endif 
 void print_leaks(){
     uint64_t total_mem=0;
     node_t * head=(&allocations)->head;
@@ -203,4 +200,9 @@ void print_leaks(){
     printf("Total leaking memory: %zu Bytes\n", total_mem);
 }
 
+__attribute__((destructor)) void print_leaks_onexit(){
+    #ifndef DISABLE_DESTRUCTOR
+    print_leaks();
+    #endif 
+}
 
