@@ -21,5 +21,8 @@
  ```  
  Or globally by compiling with:  
  `gcc  -DLEAKFINDER -include ./leakfinder.h main.c ./leakfinder.c whatever.c `
+
+ Or globally without an automatic print on program exit with
+ `gcc  -DLEAKFINDER -DDISABLE_DESTRUCTOR -include ./leakfinder.h main.c ./leakfinder.c whatever.c `
  
  Thanks to [MrGerman](https://github.com/pfhaupt) for code testing and code fixes
