@@ -164,7 +164,7 @@ void * deb_calloc(size_t n, size_t size, unsigned int line , const char*file){
 
 void * deb_realloc(void * p, size_t size, unsigned int line , const char*file){
     if(allocations.n_elements==-1) allocations=leakfinder_list_init();
-    deb_free(p);
+    leakfinder_list_remove(&allocations, (int (*)(void*, void *))freecmp, p);
     void* mem = realloc(p, size);
     allocation alloc = {
         .mem = mem,
@@ -188,7 +188,11 @@ void allocation_print(allocation* alloc){
 // `File3:line_O leaked total ZZ Bytes`
 // `Total leaking memory: XX+YY+ZZ Bytes`
 // instead of printing every single allocation
-__attribute__((destructor)) void print_leaks(){
+
+#ifndef DISABLE_DESTRUCTOR
+__attribute__((destructor))
+#endif 
+void print_leaks(){
     uint64_t total_mem=0;
     node_t * head=(&allocations)->head;
     while(head!=NULL){
